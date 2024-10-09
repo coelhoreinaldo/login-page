@@ -25,7 +25,7 @@ export default class UserService {
       return { status: 'successful', data: { token } };
     }
 
-    return { status: 'not_found', data: { message: 'User not found' } };
+    return { status: 'not_found', data: { message: 'Invalid email or password' } };
   }
 
   public async register(user: UserBody) {

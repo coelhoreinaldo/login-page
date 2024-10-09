@@ -29,6 +29,22 @@ class Validations {
 
     next();
   }
+
+  static validateToken(req: Request, res: Response, next: NextFunction): Response | void {
+    const token = req.headers.authorization;
+
+    if (!token)
+      return res.status(401).json({ message: 'Token not found' });
+
+    const verifyToken = JWT.verify(token);
+
+    if (verifyToken === 'Token must be a valid token')
+      return res.status(401).json({ message: verifyToken });
+
+    req.body.userData = verifyToken;
+    delete req.body.userData.password;
+    next();
+  }
 }
 
 export default Validations;
