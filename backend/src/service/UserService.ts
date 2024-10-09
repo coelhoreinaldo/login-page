@@ -38,4 +38,15 @@ export default class UserService {
 
     return { status: 'created', data: { id, name, email } };
   }
+
+  public async getUser(userEmail: string) {
+    const user = await this.userDao.findByEmail(userEmail);
+
+    if (!user) return { status: 'not_found', data: { message: 'User not found' } };
+
+    const { id, name, email } = user as IUser;
+
+    return { status: 'successful', data: { id, name, email } };
+  }
+
 }

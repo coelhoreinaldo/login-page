@@ -15,10 +15,12 @@ export default class UserController {
 
   public async register(req: Request, res: Response): Promise<Response> {
     const serviceResponse = await this.userService.register(req.body);
-    if (serviceResponse.status !== 'successful') {
-      return res.status(mapStatusHTTP(serviceResponse.status)).json(serviceResponse.data);
-    }
+    return res.status(mapStatusHTTP(serviceResponse.status)).json(serviceResponse.data);
+  }
 
+  public async getProfile(req: Request, res: Response): Promise<Response> {
+    const { email } = req.body.userData;
+    const serviceResponse = await this.userService.getUser(email);
     return res.status(mapStatusHTTP(serviceResponse.status)).json(serviceResponse.data);
   }
 }

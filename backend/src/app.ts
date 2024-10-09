@@ -7,12 +7,8 @@ class App {
 
   constructor() {
     this.app = express();
-
     this.config();
-
     this.routes();
-
-    this.app.get('/', (req, res) => res.json({ ok: true }));
   }
 
   private config(): void {
