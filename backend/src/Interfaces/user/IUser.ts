@@ -1,8 +1,10 @@
-export interface IUser {
-  id: number,
+export interface UserBody {
   name: string,
   email: string,
   password: string,
+}
+export interface IUser extends UserBody {
+  id: number
 }
 
 export interface ILogin {
