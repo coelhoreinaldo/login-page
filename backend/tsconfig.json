@@ -4,7 +4,7 @@
     "module": "commonjs",
     "sourceMap": true,
     "outDir": "./build",
-    "rootDir": ".",
+    "rootDir": "./src",
     "strict": true,
     "moduleResolution": "node",
     "baseUrl": ".",
@@ -20,10 +20,6 @@
     }
   },
   "include": [
-    "src/**/*",
+    "src/**/*"
   ],
-  "exclude": [
-    "node_modules",
-    "build"
-  ]
 }
