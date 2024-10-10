@@ -1,5 +1,27 @@
 version: '3.9'
 services:
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "5173:5173"
+    restart: 'always'
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "3001:3001"
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=api_db
+      - MYSQL_HOST=db
+      - MYSQL_PORT=3306
+      - JWT_SECRET=secret
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: 'always'
   db:
     image: mysql:8.0.32
     container_name: db
