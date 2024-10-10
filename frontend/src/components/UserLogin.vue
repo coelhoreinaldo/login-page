@@ -40,3 +40,6 @@ const login = async () => {
     <div v-if="errorMessage" style="color: red">{{ errorMessage }}</div>
   </form>
 </template>
+
+
+<style></style>
