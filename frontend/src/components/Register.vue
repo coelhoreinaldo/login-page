@@ -1,27 +1,29 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { useStore } from 'vuex';
-import { useRouter } from 'vue-router';
+import { ref } from 'vue'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 import type { State } from '../interfaces'
 
-const store = useStore<State>();
-const router = useRouter();
+const store = useStore<State>()
+const router = useRouter()
 
-const name = ref<string>('');
-const email = ref<string>('');
-const password = ref<string>('');
+const name = ref<string>('')
+const email = ref<string>('')
+const password = ref<string>('')
 
 const register = async () => {
   try {
-    await store.dispatch('register', { name: name.value, email: email.value, password: password.value });
+    await store.dispatch('register', {
+      name: name.value,
+      email: email.value,
+      password: password.value
+    })
 
-    if (store.getters.getUser)
-      router.push('/login')
+    if (store.getters.getUser) router.push('/login')
   } catch (err) {
-    console.error('Erro no registro:', err);
+    console.error('Erro no registro:', err)
   }
-};
-
+}
 </script>
 
 <template>
@@ -42,5 +44,3 @@ const register = async () => {
     <button type="submit">Registrar</button>
   </form>
 </template>
-
-

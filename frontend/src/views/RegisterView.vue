@@ -7,7 +7,3 @@ import Register from '@/components/Register.vue'
     <Register />
   </main>
 </template>
-
-
-
-

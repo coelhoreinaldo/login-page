@@ -1,26 +1,25 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import { useStore } from 'vuex';
-import { useRouter } from 'vue-router';
+import { ref, computed } from 'vue'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 import type { State } from '../interfaces'
 
-const store = useStore<State>();
-const router = useRouter();
+const store = useStore<State>()
+const router = useRouter()
 
-const email = ref<string>('');
-const password = ref<string>('');
+const email = ref<string>('')
+const password = ref<string>('')
 
-const errorMessage = computed(() => store.getters.getErrorMessage);
+const errorMessage = computed(() => store.getters.getErrorMessage)
 
 const login = async () => {
   try {
-    await store.dispatch('login', { email: email.value, password: password.value });
-    if (store.getters.isAuthenticated)
-      router.push("profile");
+    await store.dispatch('login', { email: email.value, password: password.value })
+    if (store.getters.isAuthenticated) router.push('profile')
   } catch (err) {
-    console.error('Erro no login:', err);
+    console.error('Erro no login:', err)
   }
-};
+}
 </script>
 
 <template>
@@ -38,6 +37,6 @@ const login = async () => {
 
     <button @click.prevent="login">Entrar</button>
 
-    <div v-if="errorMessage" style="color: red;">{{ errorMessage }}</div>
+    <div v-if="errorMessage" style="color: red">{{ errorMessage }}</div>
   </form>
 </template>
