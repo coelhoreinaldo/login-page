@@ -1,3 +1,5 @@
+![alt text](app.png)
+
 # Como executar o projeto
 
 1. Instale o Docker em sua máquina
