@@ -25,7 +25,7 @@ const login = async () => {
 <template>
   <div class="login-container">
     <form class="login-form">
-      <h2>Login</h2>
+      <h2 class="login-title">Login</h2>
       <div class="input-group">
         <label for="email">E-mail</label>
         <input type="email" id="email" v-model="email" class="input-field" />
@@ -57,6 +57,11 @@ const login = async () => {
   border-radius: 8px;
   max-width: 400px;
   width: 100%;
+}
+
+.login-title {
+  font-size: 2rem;
+  color: rgb(142, 95, 207);
 }
 
 .login-form h2 {

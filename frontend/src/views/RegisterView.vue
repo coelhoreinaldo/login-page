@@ -3,7 +3,7 @@ import Register from '@/components/UserRegister.vue'
 </script>
 
 <template>
-  <main>
+  <main class="container">
     <Register />
   </main>
 </template>
