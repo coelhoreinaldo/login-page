@@ -2,11 +2,7 @@
 import { ref, computed } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
-
-interface State {
-  token: string | null;
-  errorMessage: string;
-}
+import type { State } from '../interfaces'
 
 const store = useStore<State>();
 const router = useRouter();

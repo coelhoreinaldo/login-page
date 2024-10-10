@@ -1,15 +1,13 @@
+<script setup lang="ts">
+import Register from '@/components/Register.vue'
+</script>
+
 <template>
-  <div class="about">
-    <h1>This is an register page</h1>
-  </div>
+  <main>
+    <Register />
+  </main>
 </template>
 
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-</style>
+
+
+

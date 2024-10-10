@@ -1,16 +1,13 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
-
-interface State {
-  token: string | null;
-  errorMessage: string;
-}
+import type { State, User } from '@/interfaces';
 
 const store = createStore({
   state(): State {
     return {
       token: localStorage.getItem('token') || null,
-      errorMessage: ''
+      errorMessage: '',
+      user: null
     }
   },
   mutations: {
@@ -23,6 +20,9 @@ const store = createStore({
     },
     clearErrorMessage(state: State) {
       state.errorMessage = '';
+    },
+    setUser(state: State, user: User) {
+      state.user = user;
     }
   },
   actions: {
@@ -30,13 +30,30 @@ const store = createStore({
       try {
         commit('clearErrorMessage');
         const response = await axios.post('http://localhost:3001/api/login', payload);
-
         const token: string = response.data.token;
         commit('setToken', token);
       } catch (error) {
-        commit('setErrorMessage', String(error.response?.data?.message || 'Erro ao realizar login'));
+        if (axios.isAxiosError(error)) {
+          commit('setErrorMessage', error.response?.data?.message || 'Erro ao realizar login');
+        } else {
+          commit('setErrorMessage', 'Erro ao realizar login');
+        }
       }
     },
+    async register({ commit }, payload: { email: string; password: string; name: string }) {
+      try {
+        commit('clearErrorMessage');
+        const response = await axios.post('http://localhost:3001/api/register', payload);
+        const user = response.data;
+        commit('setUser', user);
+      } catch (error) {
+        if (axios.isAxiosError(error)) {
+          commit('setErrorMessage', error.response?.data?.message || 'Erro ao realizar cadastro');
+        } else {
+          commit('setErrorMessage', 'Erro ao realizar cadastro');
+        }
+      }
+    }
   },
   getters: {
     getErrorMessage(state: State): string {
@@ -45,8 +62,10 @@ const store = createStore({
     isAuthenticated(state: State): boolean {
       return !!state.token;
     },
+    getUser(state: State): User | null {
+      return state.user;
+    }
   },
-})
+});
 
-
-export default store
+export default store;
