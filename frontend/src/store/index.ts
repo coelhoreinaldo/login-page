@@ -64,6 +64,9 @@ const store = createStore({
     },
     getUser(state: State): User | null {
       return state.user
+    },
+    getToken(state: State): string | null {
+      return state.token
     }
   }
 })
