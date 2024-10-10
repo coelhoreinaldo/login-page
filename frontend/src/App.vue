@@ -1,6 +1,25 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import Greetings from './components/Greetings.vue'
+import UserGreetings from './components/UserGreetings.vue'
+import { useStore } from 'vuex'
+import { ref, watch } from 'vue'
+
+const store = useStore()
+const isAuthenticated = ref(store.getters.isAuthenticated)
+
+watch(
+  () => store.getters.isAuthenticated,
+  (newValue) => {
+    isAuthenticated.value = newValue
+  }
+)
+
+const logout = () => {
+  store.commit('setToken', '')
+  localStorage.removeItem('token')
+  isAuthenticated.value = false
+  window.location.href = '/login'
+}
 </script>
 
 <template>
@@ -8,11 +27,12 @@ import Greetings from './components/Greetings.vue'
     <img alt="Vue logo" class="logo" src="@/assets/logo.png" width="300" height="125" />
 
     <div class="wrapper">
-      <Greetings msg="Welcome!" />
+      <UserGreetings msg="Bem vindo!" />
 
       <nav>
-        <RouterLink to="/login">Login</RouterLink>
-        <RouterLink to="/register">Register</RouterLink>
+        <RouterLink to="/login" v-if="!isAuthenticated">Login</RouterLink>
+        <RouterLink to="/register" v-if="!isAuthenticated">Cadastre-se</RouterLink>
+        <a href="#" v-if="isAuthenticated" @click.prevent="logout">Logout</a>
       </nav>
     </div>
   </header>
