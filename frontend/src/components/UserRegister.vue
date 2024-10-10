@@ -59,7 +59,6 @@ const register = async () => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   padding: 2rem;
 }
 
