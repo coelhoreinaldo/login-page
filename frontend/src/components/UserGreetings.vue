@@ -1,13 +1,19 @@
 <script setup lang="ts">
-defineProps<{
-  msg: string
-}>()
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+
+const store = useStore()
+
+const isAuthenticated = computed(() => store.getters.isAuthenticated)
 </script>
 
 <template>
   <div class="greetings">
-    <h1 class="purple">{{ msg }}</h1>
-    <h3>Faça login para acessar o sistema ou clique em registrar para criar uma conta.</h3>
+    <h1 class="purple">Bem vindo!</h1>
+    <h3 v-if="!isAuthenticated">
+      Faça login para acessar o sistema ou clique em registrar para criar uma conta.
+    </h3>
+    <h3 v-else>Você está logado! Este é o seu perfil.</h3>
   </div>
 </template>
 
