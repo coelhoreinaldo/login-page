@@ -111,7 +111,6 @@ const login = async () => {
   background-color: rgb(124, 55, 221);
 }
 
-/* Estilo para a mensagem de erro */
 .error-message {
   color: red;
   text-align: center;
@@ -119,7 +118,6 @@ const login = async () => {
   font-size: 0.9rem;
 }
 
-/* Responsividade para telas menores */
 @media (max-width: 600px) {
   .login-form {
     padding: 1.5rem;

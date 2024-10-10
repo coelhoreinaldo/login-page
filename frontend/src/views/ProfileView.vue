@@ -3,7 +3,7 @@ import Profile from '@/components/UserProfile.vue'
 </script>
 
 <template>
-  <main>
+  <main class="container">
     <Profile />
   </main>
 </template>
