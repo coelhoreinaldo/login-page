@@ -16,3 +16,17 @@ docker-compose up -d
 ```
 
 4. Aguarde alguns segundos para que o container seja criado e acesse o endereço `http://localhost:5173`
+
+# Tecnoogias utilizadas
+
+Backend:
+
+- Node.js, Express, JWT, Bcrypt, Sequelize
+
+Frontend:
+
+- Vue, VueRouter, Vuex
+
+DB:
+
+- MySQL
