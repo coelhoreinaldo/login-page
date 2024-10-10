@@ -16,7 +16,6 @@ a,
 img {
   height: 8em;
   object-fit: cover;
-  
 }
 
 @media (hover: hover) {

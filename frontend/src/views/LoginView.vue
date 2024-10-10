@@ -8,7 +8,6 @@ import Login from '@/components/UserLogin.vue'
   </main>
 </template>
 
-
 <style>
 .container {
   margin-top: 16px;

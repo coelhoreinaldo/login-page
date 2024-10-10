@@ -23,23 +23,101 @@ const login = async () => {
 </script>
 
 <template>
-  <form>
-    <h2>Login</h2>
-    <div>
-      <label for="email">E-mail</label>
-      <input type="email" id="email" v-model="email" />
-    </div>
+  <div class="login-container">
+    <form class="login-form">
+      <h2>Login</h2>
+      <div class="input-group">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" v-model="email" class="input-field" />
+      </div>
 
-    <div>
-      <label for="password">Senha</label>
-      <input type="password" id="password" v-model="password" />
-    </div>
+      <div class="input-group">
+        <label for="password">Senha</label>
+        <input type="password" id="password" v-model="password" class="input-field" />
+      </div>
 
-    <button @click.prevent="login">Entrar</button>
+      <button @click.prevent="login" class="login-btn">Entrar</button>
 
-    <div v-if="errorMessage" style="color: red">{{ errorMessage }}</div>
-  </form>
+      <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
+    </form>
+  </div>
 </template>
 
+<style scoped>
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 2rem;
+}
 
-<style></style>
+.login-form {
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 100%;
+}
+
+.login-form h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.input-group {
+  margin-bottom: 1.2rem;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #beb2b2;
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease;
+}
+
+.input-field:focus {
+  border-color: rgb(142, 95, 207);
+  outline: none;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 0.9rem;
+  background-color: rgb(142, 95, 207);
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+}
+
+.login-btn:hover {
+  background-color: rgb(124, 55, 221);
+}
+
+/* Estilo para a mensagem de erro */
+.error-message {
+  color: red;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 600px) {
+  .login-form {
+    padding: 1.5rem;
+  }
+}
+</style>
